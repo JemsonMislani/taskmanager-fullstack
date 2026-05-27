@@ -23,6 +23,14 @@ app.post('/create', (req, res) => {
     .catch(err => res.json(err))
 })
 
+app.get('/getTask/:id', (req, res) => {
+    const id = req.params.id;
+    TaskModel.findById(id)
+    .then(tasks => res.json(tasks))
+    .catch(err => res.json(err))
+})
+
+
 const PORT = 3005
 app.listen(PORT, () => {
     console.log('Jem your server is running!')

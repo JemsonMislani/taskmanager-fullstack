@@ -1,20 +1,45 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './EditTask.css'
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function EditTask(){
+    const {id} = useParams()
+    const [todo, setTodo] = useState('')
+    const [date, setDate] = useState('')
+
+    useEffect(() => {
+        axios.get('http://localhost:3005/getTask/'+id)
+        .then(result => {
+            console.log(result)
+            setTodo(result.data.todo)
+            setDate(result.data.date)
+        })
+        .catch(err => console.log(err))
+    }, [id])
 
     return(
         <>
             <div className='edit-elem'>
                 <h3 className='edit-task-elem'>Edit my task</h3>
+                <Link 
+                    to='/'
+                    className='btn btn-primary'>Undo</Link>
                 <div className='input-element-edit'>
                     <input 
                         className='edit-todo'
                         type="text" 
-                        placeholder="Enter task"/>
+                        placeholder="Enter task"
+                        value={todo}
+                        onChange={(e) => setTodo(e.target.value)}/>
                     <input 
                         className='edit-task'
                         type="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
                         />
                     <button
                         className='update-btn'>Update task</button>

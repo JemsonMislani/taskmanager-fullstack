@@ -65,7 +65,7 @@ export default function Dashboard(){
                             <p 
                                 className='tasks-display fw-semibold'>{t.todo} • {t.date}</p> 
                             <Link
-                                to='/edit'
+                                to={`/edit/${t._id}`}
                                 className='btn btn-primary'
                                 >Edit</Link>
                             <button
