@@ -4,6 +4,7 @@ import './Home.css';
 import { useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom'
 
 export default function Dashboard(){
     const [todo, setTodo] = useState('')
@@ -63,8 +64,10 @@ export default function Dashboard(){
                             className='tasks'>
                             <p 
                                 className='tasks-display fw-semibold'>{t.todo} • {t.date}</p> 
-                            <button 
-                                className='btn btn-primary'>Edit</button>
+                            <Link
+                                to='/edit'
+                                className='btn btn-primary'
+                                >Edit</Link>
                             <button
                                 className='btn btn-success'>Completed</button>
                             <button

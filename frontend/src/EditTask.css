@@ -1,0 +1,49 @@
+
+.edit-elem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    width: 900px;
+    height: 600px;
+    box-shadow: 2px 3px 8px 2px rgb(10, 10, 10, 0.2);
+    border-radius: 5px;
+}
+
+.edit-task-elem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input-element-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    gap: 5px;
+}
+
+.edit-todo,
+.edit-task {
+    padding: 15px 50px 15px 10px;
+    font-size: 15px;
+}
+
+.input-element, input {
+    display: flex;
+    gap: 5px;
+}
+
+.update-btn {
+    padding: 18px 15px 18px 15px;
+    color: white;
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+}
