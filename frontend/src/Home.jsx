@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './Home.css';
 import { useEffect } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Dashboard(){
     const [todo, setTodo] = useState('')
@@ -35,7 +36,7 @@ export default function Dashboard(){
     }
 
     return(
-    <>
+    <div className='whole'>
         <h3 className='home-element'>What's our task?</h3>
         <div className='input-element'>
             <input 
@@ -60,18 +61,19 @@ export default function Dashboard(){
                         return <div 
                             key={index}
                             className='tasks'>
-                            <p>{t.todo} • {t.date}</p> 
-                            <button>Edit</button>
-                            <button>Completed</button>
-                            <button>Remove</button>
+                            <p 
+                                className='tasks-display fw-semibold'>{t.todo} • {t.date}</p> 
+                            <button 
+                                className='btn btn-primary'>Edit</button>
+                            <button
+                                className='btn btn-success'>Completed</button>
+                            <button
+                                className='btn btn-danger'>Remove</button>
                         </div> 
                     })
                 }
             </div>
-            <div>
-                <h3 className='sts-completed'>Completed task</h3>
-            </div>
         </div>
-    </>
+    </div>
     );
 }
