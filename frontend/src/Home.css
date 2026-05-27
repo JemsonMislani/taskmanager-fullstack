@@ -17,6 +17,41 @@ body,
     box-shadow: 2px 3px 8px 2px rgb(10, 10, 10, 0.2);
 }
 
+.completed-task {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+    position: relative;
+}
+
+.comp-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgb(8, 105, 15);
+    color: white;
+    padding: 5px;
+    margin: 2px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.task-num-comp {
+    position: absolute;
+    left: 135px;
+    top: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 2px 10px 2px 10px;
+    border-radius: 50%;
+    background-color: rgb(12, 145, 63);
+    color: white;
+}
+
 .home-element {
     display: flex;
     justify-content: center;

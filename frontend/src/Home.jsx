@@ -38,6 +38,12 @@ export default function Dashboard(){
 
     return(
     <div className='whole'>
+        <div className='completed-task'>
+            <Link 
+                to='/completed'
+                className='comp-task'>Completed task</Link>
+            <p className='task-num-comp'>1</p>
+        </div>
         <h3 className='home-element'>What's our task?</h3>
         <div className='input-element'>
             <input 
