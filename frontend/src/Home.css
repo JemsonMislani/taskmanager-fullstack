@@ -39,3 +39,22 @@ input {
     border-radius: 5px;
     font-size: 15px;
 }
+
+.task-status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25rem;
+}
+
+.sts-pending,
+.sts-completed {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.tasks {
+    display: flex;
+    justify-content: center;
+}
