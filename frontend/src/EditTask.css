@@ -1,4 +1,13 @@
 
+.popup {
+    margin: 10px;
+    border: 1px solid rgb(78, 231, 17);
+    padding: 8px;
+    background-color: rgb(24, 138, 24);
+    color: white;
+    border-radius: 5px;
+}
+
 .edit-elem {
     display: flex;
     flex-direction: column;

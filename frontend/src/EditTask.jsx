@@ -10,6 +10,7 @@ export default function EditTask(){
     const {id} = useParams()
     const [todo, setTodo] = useState('')
     const [date, setDate] = useState('')
+    const [popup, setPopUp] = useState(false)
     const nav = useNavigate()
 
     useEffect(() => {
@@ -29,13 +30,25 @@ export default function EditTask(){
         )
         .then(result => {
             console.log(result)
-            nav('/')
+            setPopUp(true)
+
+            setTimeout(() => {
+                setPopUp(false)
+                nav('/')
+            }, 2000)
         })
     }
 
     return(
         <>
             <div className='edit-elem'>
+                {
+                    popup && (
+                        <div className='popup'>
+                            ✅️ Task updated!
+                        </div>
+                    )
+                }
                 <h3 className='edit-task-elem'>Edit my task</h3>
                 <Link 
                     to='/'
