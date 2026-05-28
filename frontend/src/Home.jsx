@@ -10,6 +10,7 @@ export default function Dashboard(){
     const [todo, setTodo] = useState('')
     const [date, setDate] = useState('')
     const [task, setTask] = useState([])
+    const [popup, setPopUp] = useState(false)
 
     useEffect(() => {
         axios.get('http://localhost:3005/')
@@ -39,10 +40,14 @@ export default function Dashboard(){
     const handleCompletedTask = (id) => {
         axios.patch('http://localhost:3005/completeTask/'+id)
         .then((result) => {
+            setPopUp(true)
             setTask(prev => prev.map(t => t._id === id ? 
                 {...t, status: 'completed'} : t
             ))
             console.log(result)
+            setTimeout(() => {
+                setPopUp(false)
+            }, 2000)
         })
         .catch(err => console.log(err))
     }
@@ -58,6 +63,11 @@ export default function Dashboard(){
                 className='task-num-comp'>{
                 task.filter(t => t.status === 'completed').length
                 }</Link>
+        </div>
+        <div>
+            {
+                popup && (<p className='popup-completed'>✅ Moved to completed task!</p>)
+            }
         </div>
         <h3 className='home-element'>What's our task?</h3>
         <div className='input-element'>
@@ -80,7 +90,7 @@ export default function Dashboard(){
                 <h3 className='sts-pending'>Pending task</h3>
                 {
                     task.filter(t => t.status !== 'completed')
-                    .length === 0 ? (<p>No pending task</p>) : task.filter((t => t.status !== 'completed'))
+                    .length === 0 ? (<p className='no-pending-task'>No pending task</p>) : task.filter((t => t.status !== 'completed'))
                     .map((t, index) => {
                         return <div 
                             key={index}
