@@ -36,13 +36,28 @@ export default function Dashboard(){
         setDate('')
     }
 
+    const handleCompletedTask = (id) => {
+        axios.patch('http://localhost:3005/completeTask/'+id)
+        .then((result) => {
+            setTask(prev => prev.map(t => t._id === id ? 
+                {...t, status: 'completed'} : t
+            ))
+            console.log(result)
+        })
+        .catch(err => console.log(err))
+    }
+
     return(
     <div className='whole'>
         <div className='completed-task'>
             <Link 
                 to='/completed'
                 className='comp-task'>Completed task</Link>
-            <p className='task-num-comp'>1</p>
+            <Link 
+                to='/completed'
+                className='task-num-comp'>{
+                task.filter(t => t.status === 'completed').length
+                }</Link>
         </div>
         <h3 className='home-element'>What's our task?</h3>
         <div className='input-element'>
@@ -64,7 +79,9 @@ export default function Dashboard(){
             <div>
                 <h3 className='sts-pending'>Pending task</h3>
                 {
-                    task.map((t, index) => {
+                    task.filter(t => t.status !== 'completed')
+                    .length === 0 ? (<p>No pending task</p>) : task.filter((t => t.status !== 'completed'))
+                    .map((t, index) => {
                         return <div 
                             key={index}
                             className='tasks'>
@@ -75,6 +92,7 @@ export default function Dashboard(){
                                 className='btn btn-primary'
                                 >Edit</Link>
                             <button
+                                onClick={(e) => handleCompletedTask(t._id)}
                                 className='btn btn-success'>Completed</button>
                             <button
                                 className='btn btn-danger'>Remove</button>
