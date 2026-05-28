@@ -61,6 +61,17 @@ app.delete('/deleteTask/:id', (req, res) => {
     .catch(err => res.json(err))
 })
 
+app.patch('/undoTask/:id', (req, res) => {
+    const id = req.params.id;
+    TaskModel.findByIdAndUpdate(
+        id,
+        { status: 'pending' },
+        { new: true }
+    )
+    .then(tasks => res.json(tasks))
+    .catch(err => res.json(err))
+})
+
 const PORT = 3005
 app.listen(PORT, () => {
     console.log('Jem your server is running!')

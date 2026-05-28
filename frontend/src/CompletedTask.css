@@ -6,6 +6,13 @@
     margin: 20px;
 }
 
+.no-task-completed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
 .completed-task-element {
     display: flex;
     flex-direction: column;

@@ -17,13 +17,23 @@ export default function CompletedTask(){
         .catch(err => console.log(err))
     }, [])
 
+    const handleUndo = (id) => {
+        axios.patch('http://localhost:3005/undoTask/'+id)
+        .then(result => {
+            console.log(result.data)
+            setTask(un => un.filter(u => u._id !== id))
+        })
+        .catch(err => console.log(err))
+    } 
+
     return(
         <div className='completed-task-element'>
             <div>
             <h3 className='completed-head'>Completed task✅</h3>
                 {
                     task.length === 0 ? (
-                        <p>No tasks completed</p>
+                        <p
+                            className='no-task-completed'>No completed tasks</p>
                     ) : (
                         task.map((t) => (
                             <div 
@@ -33,7 +43,11 @@ export default function CompletedTask(){
                                     <span>
                                         {t.todo} • {t.date} 
                                     </span>
-                                    <button className='btn btn-success'>Undo</button>
+                                    <button 
+                                        onClick={(e) => 
+                                            handleUndo(t._id)
+                                        }
+                                        className='btn btn-success'>Undo</button>
                                     <button className='btn btn-danger'>Remove</button>
                                 </div>
                             </div>
