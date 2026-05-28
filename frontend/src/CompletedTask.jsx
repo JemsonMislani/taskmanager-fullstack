@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export default function CompletedTask(){
     const [task, setTask] = useState([])
+    const [remove, setRemove] = useState(false)
 
     useEffect(() => {
         axios.get('http://localhost:3005/')
@@ -26,9 +27,28 @@ export default function CompletedTask(){
         .catch(err => console.log(err))
     } 
 
+    const handleDelete = (id) => {
+        axios.delete('http://localhost:3005/deleteTask/'+id)
+        .then(result => {
+            setTask(task.filter(t => t._id !== id))
+            setRemove(true)
+
+            setTimeout(() => {
+                setRemove(false)
+                console.log(result)
+            }, 2000)
+        })
+        .then(err => console.log(err))
+    }
+
     return(
         <div className='completed-task-element'>
             <div>
+                <div>
+                    {
+                        remove && (<p className='remove-task-completed'>❌ Removed task</p>)
+                    }
+                </div>
             <h3 className='completed-head'>Completed task✅</h3>
                 {
                     task.length === 0 ? (
@@ -48,7 +68,11 @@ export default function CompletedTask(){
                                             handleUndo(t._id)
                                         }
                                         className='btn btn-success'>Undo</button>
-                                    <button className='btn btn-danger'>Remove</button>
+                                    <button 
+                                        onClick={(e) => 
+                                            handleDelete(t._id)
+                                        }
+                                        className='btn btn-danger'>Remove</button>
                                 </div>
                             </div>
                         ))

@@ -25,6 +25,17 @@
     box-shadow: 2px 3px 8px 2px rgb(10, 10, 10, 0.2);
 }
 
+.remove-task-completed {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    border: 1px solid rgb(231, 67, 17);
+    padding: 8px;
+    background-color: rgb(138, 24, 24);
+    color: white;
+    border-radius: 5px;
+}
+
 .tasks-completed {
     display: grid;
     grid-template-columns: 1fr auto auto;
