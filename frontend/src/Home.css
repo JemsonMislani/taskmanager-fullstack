@@ -61,6 +61,15 @@ body,
     border-radius: 5px;
 }
 
+.remove {
+    margin: 10px;
+    border: 1px solid rgb(231, 67, 17);
+    padding: 8px;
+    background-color: rgb(138, 24, 24);
+    color: white;
+    border-radius: 5px;
+}
+
 .home-element {
     display: flex;
     justify-content: center;

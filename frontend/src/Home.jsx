@@ -11,6 +11,7 @@ export default function Dashboard(){
     const [date, setDate] = useState('')
     const [task, setTask] = useState([])
     const [popup, setPopUp] = useState(false)
+    const [remove, setRemove] = useState(false)
 
     useEffect(() => {
         axios.get('http://localhost:3005/')
@@ -52,6 +53,20 @@ export default function Dashboard(){
         .catch(err => console.log(err))
     }
 
+    const handleDelete = (id) => {
+        axios.delete('http://localhost:3005/deleteTask/'+id)
+        .then(result => {
+            setTask(task.filter(t => t._id !== id))
+            setRemove(true)
+
+            setTimeout(() => {
+                setRemove(false)
+                console.log(result)
+            }, 2000)
+        })
+        .then(err => console.log(err))
+    }
+
     return(
     <div className='whole'>
         <div className='completed-task'>
@@ -67,6 +82,11 @@ export default function Dashboard(){
         <div>
             {
                 popup && (<p className='popup-completed'>✅ Moved to completed task!</p>)
+            }
+        </div>
+        <div>
+            {
+                remove && (<p className='remove'>⛔ Removed task!</p>)
             }
         </div>
         <h3 className='home-element'>What's our task?</h3>
@@ -105,6 +125,8 @@ export default function Dashboard(){
                                 onClick={(e) => handleCompletedTask(t._id)}
                                 className='btn btn-success'>Completed</button>
                             <button
+                                onClick={(e) =>
+                                handleDelete(t._id)}
                                 className='btn btn-danger'>Remove</button>
                         </div> 
                     })
