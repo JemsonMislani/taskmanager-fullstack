@@ -18,19 +18,29 @@ export default function CompletedTask(){
     }, [])
 
     return(
-        <>
-            <h3>Completed task</h3>
-            {
-                task.length === 0 ? (
-                    <p>No tasks completed</p>
-                ) : (
-                    task.map((t) => (
-                        <div key={t._id}>
-                            <p>{t.todo} • {t.date}</p>
-                        </div>
-                    ))
-                )
-            }
-        </>
+        <div className='completed-task-element'>
+            <div>
+            <h3 className='completed-head'>Completed task✅</h3>
+                {
+                    task.length === 0 ? (
+                        <p>No tasks completed</p>
+                    ) : (
+                        task.map((t) => (
+                            <div 
+                                className='completed-task-section'
+                                key={t._id}>
+                                <div className='tasks-completed'>
+                                    <span>
+                                        {t.todo} • {t.date} 
+                                    </span>
+                                    <button className='btn btn-success'>Undo</button>
+                                    <button className='btn btn-danger'>Remove</button>
+                                </div>
+                            </div>
+                        ))
+                    )
+                }
+            </div>
+        </div>
     );
 }
