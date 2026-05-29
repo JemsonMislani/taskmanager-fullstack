@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CompletedTask.css'
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 export default function CompletedTask(){
@@ -50,6 +51,7 @@ export default function CompletedTask(){
                     }
                 </div>
             <h3 className='completed-head'>Completed task✅</h3>
+            <Link className='btn btn-primary'>Back</Link>
                 {
                     task.length === 0 ? (
                         <p
