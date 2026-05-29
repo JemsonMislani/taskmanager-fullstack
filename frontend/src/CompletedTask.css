@@ -6,6 +6,12 @@
     margin: 20px;
 }
 
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .no-task-completed {
     display: flex;
     justify-content: center;

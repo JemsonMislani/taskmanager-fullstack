@@ -44,6 +44,9 @@ export default function CompletedTask(){
 
     return(
         <div className='completed-task-element'>
+            <Link 
+                to='/'
+                className='btn btn-primary'>Back</Link>
             <div>
                 <div>
                     {
@@ -51,7 +54,6 @@ export default function CompletedTask(){
                     }
                 </div>
             <h3 className='completed-head'>Completed task✅</h3>
-            <Link className='btn btn-primary'>Back</Link>
                 {
                     task.length === 0 ? (
                         <p
